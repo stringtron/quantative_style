@@ -14,6 +14,11 @@ The second part is for C-Value evaluation.
 
 The third part is The R code for Calibrating E statistic and Calibrating C statistic
 
+
+
+50styles_1.pdf
+50styles_2.pdf
+
 The code will be uploaded soon
 
 

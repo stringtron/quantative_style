@@ -12,5 +12,8 @@ and  target style.
 The second part is for C-Value evaluation.
 
 
-The third part is for effetive E and C values.
+The third part is The R code for Calibrating E statistic and Calibrating C statistic
+
+The code will be uploaded soon
+
 

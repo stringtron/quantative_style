@@ -5,11 +5,12 @@ This is the document to WACV 2020 paper "Improving style tranfer with calibrated
 Codes have three parts:
 
 
-The first part is for E-Value evaluation, which calculates the minus log KL distance between VGG feature maps of symthesized image
-and  target style.
+The first part is for the evaluation of base E statistics, which calculates the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank
+of feature channels. Please see our paper for the details.
 
 
-The second part is for C-Value evaluation.
+The second part is for C-Value evaluation:
+ OWe use the off-the-shelf contour detection method by Arbelaezet al. [1],which estimates Pb from an image.   We use the standardmetric,(the F-score, which is a harmonic mean of precisionand recall between Pb and human-drawn contour map). Thefinal contour detection score is the Maximum F-score of aprecision-recall  curve.   We  compute  the  final  contour  de-tection scores with the transferred images’ Pb and groundtruth contours from the content images.  The resulting con-tour detection scores are the base C statistics. We think thisis fair because standard contour detection methods were notdeveloped with transferred images in the scope. For sourcecontent images and human annotated ground truth contourmaps we choose 200 test images from BSDS500[1].
 
 
 The third part is The R code for Calibrating E statistic and Calibrating C statistic
@@ -20,5 +21,11 @@ The third part is The R code for Calibrating E statistic and Calibrating C stati
 50styles_2.pdf
 
 The code will be uploaded soon
+
+
+
+
+References
+[1]  P.  Arbelaez,  M.  Maire,  C.  Fowlkes,  and  J.  Malik.    Con-tour detection and hierarchical image segmentation.IEEEtransactions  on  pattern  analysis  and  machine  intelligence,33(5):898–916, 2011.
 
 

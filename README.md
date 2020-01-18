@@ -6,7 +6,8 @@ Codes have three parts:
 
 
 The first part is for the evaluation of base E statistics, which calculates the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank
-of feature channels. Please see our paper for the details.
+of feature channels. Please see our paper for the details. 
+The code is implemneted in E_base.ipynb.
 
 
 The second part is for C-Value evaluation:

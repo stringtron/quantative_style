@@ -20,7 +20,7 @@ The third part is The R code for Calibrating E statistic and Calibrating C stati
 
 
 
-50styles_1.pdf
+50styles_1.pdf https://github.com/stringtron/quantative_style/files/4075093/50styles_1.pdf
 50styles_2.pdf
 
 The code will be uploaded soon

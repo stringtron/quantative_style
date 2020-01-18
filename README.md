@@ -10,7 +10,9 @@ of feature channels. Please see our paper for the details.
 
 
 The second part is for C-Value evaluation:
- OWe use the off-the-shelf contour detection method by Arbelaezet al. [1],which estimates Pb from an image.   We use the standardmetric,(the F-score, which is a harmonic mean of precisionand recall between Pb and human-drawn contour map). Thefinal contour detection score is the Maximum F-score of aprecision-recall  curve.   We  compute  the  final  contour  de-tection scores with the transferred images’ Pb and groundtruth contours from the content images.  The resulting con-tour detection scores are the base C statistics. We think thisis fair because standard contour detection methods were notdeveloped with transferred images in the scope. For sourcecontent images and human annotated ground truth contourmaps we choose 200 test images from BSDS500[1].
+
+We use the off-the-shelf contour detection method by Arbelaezet al. [1],which estimates Pb from an image.   We use the standardmetric,(the F-score, which is a harmonic mean of precisionand recall between Pb and human-drawn contour map). Thefinal contour detection score is the Maximum F-score of aprecision-recall curve.   We  compute  the  final  contour  de-tection scores with the transferred images’ Pb and groundtruth contours from the content images.  The resulting con-tour detection scores are the base C statistics.  
+For sourcecontent images and human annotated ground truth contourmaps we choose 200 test images from BSDS500[1].
 
 
 The third part is The R code for Calibrating E statistic and Calibrating C statistic

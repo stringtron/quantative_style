@@ -18,7 +18,8 @@ For sourcecontent images and human annotated ground truth contourmaps we choose 
 
 The third part is The R code for Calibrating E statistic and Calibrating C statistic
 
-
+download 50 styles used in the paper from this [link](https://www.dropbox.com/s/v6mrsdo12s459nm/50styles.zip?dl=0)
+download BSDS500 images used in the experiments from this [link](https://www.dropbox.com/s/qb8mwnqclwaotgv/BSDS500.zip?dl=0)
 
 50styles_1.pdf https://github.com/stringtron/quantative_style/files/4075093/50styles_1.pdf
 50styles_2.pdf

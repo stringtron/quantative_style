@@ -20,8 +20,11 @@ Codes have three parts:
 python E_base.ipynb
 ```
 
+
 We calculate the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank of feature channels. Please see our paper for the details. 
 
+
+download BSDS500 images used in the experiments from this [link](https://www.dropbox.com/s/qb8mwnqclwaotgv/BSDS500.zip?dl=0)
 
 ## C-Value evaluation
 

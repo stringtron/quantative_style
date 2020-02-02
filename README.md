@@ -1,16 +1,23 @@
 # quantative_style
 
-This is the source code for the WACV 2020 paper "Improving style tranfer with calibrated metrics"
+This is the demo code repository for the WACV 2020 paper "Improving style tranfer with calibrated metrics"
 
 https://arxiv.org/pdf/1910.09447.pdf
 
 <img src='teasor.png' width=400>
 
 ## Requirements
+- Matlab R2015a
 - Python 3
 - PyTorch
 - torchvision
-- R (for calibration)
+- R (for calibrating base EC statistics)
+
+## Style and content images used in the paper:
+### Style Images
+
+### Content Images 
+
 
 ## Evaluation of base E statistics
 

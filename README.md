@@ -4,7 +4,7 @@ This is the source code for the WACV 2020 paper "Improving style tranfer with ca
 
 https://arxiv.org/pdf/1910.09447.pdf
 
-<img src='teasor.png' width=700>
+<img src='teasor.png' width=400>
 
 Codes have three parts:
 

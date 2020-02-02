@@ -6,8 +6,6 @@ https://arxiv.org/pdf/1910.09447.pdf
 
 <img src='teasor.png' width=400>
 
-Codes have three parts:
-
 ## Requirements
 - Python 3
 - PyTorch

@@ -8,9 +8,15 @@ https://arxiv.org/pdf/1910.09447.pdf
 
 Codes have three parts:
 
+## Requirements
+- Python 3
+- R (for calibration)
+
 ## Evaluation of base E statistics
 
-The code is implemneted in E_base.ipynb.
+```
+python E_base.ipynb
+```
 
 We calculate the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank of feature channels. Please see our paper for the details. 
 

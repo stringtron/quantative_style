@@ -10,6 +10,8 @@ Codes have three parts:
 
 ## Requirements
 - Python 3
+- PyTorch
+- torchvision
 - R (for calibration)
 
 ## Evaluation of base E statistics

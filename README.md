@@ -4,6 +4,8 @@ This is the source code for the WACV 2020 paper "Improving style tranfer with ca
 
 https://arxiv.org/pdf/1910.09447.pdf
 
+<img src='teasor.png' width=700>
+
 Codes have three parts:
 
 ## Evaluation of base E statistics
@@ -19,7 +21,7 @@ We use the off-the-shelf contour detection method by Arbelaezet al. [1],which es
 For sourcecontent images and human annotated ground truth contourmaps we choose 200 test images from BSDS500[1].
 
 References
-[1]  P.  Arbelaez,  M.  Maire,  C.  Fowlkes,  and  J.  Malik.    Con-tour detection and hierarchical image segmentation.IEEEtransactions  on  pattern  analysis  and  machine  intelligence,33(5):898–916, 2011.
+[1]  P.  Arbelaez,  M.  Maire,  C.  Fowlkes,  and  J.  Malik. Con-tour detection and hierarchical image segmentation.IEEEtransactions  on  pattern  analysis  and  machine  intelligence,33(5):898–916, 2011.
 
 ## Calibrating E statistic and Calibrating C statistic
 

@@ -26,7 +26,7 @@ See 50 styles from the following links:
 ### Content Images 
 We use 200 test images and their ground truth contour annotations from the [BSDS500 dataset](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html).
 Download all test content images, annotations, and style transferred images used in the paper from this [link](https://www.dropbox.com/s/qb8mwnqclwaotgv/BSDS500.zip?dl=0).
-Unzip downloaded file and put all subfolders under "./BSDS500" in this repo.
+Unzip downloaded file as "./BSDS500" under the home directory of this repo. 
 
 ## Experiment procedure
 For each configuration of one style transfer method, we randomly sample 300 combination of "style loss weight"-"content ID" -"style ID" and generate their corresponding style transfer images. These images are used for the following quantitative evaluation of style transfer methods.

@@ -52,7 +52,7 @@ Breakdown Pb evaluation results for base C statistics:
 
 ### Base E statistics
 
-####TODO
+####TODO: upload base E statistics examples
 
 ```
 python E_base.ipynb
@@ -66,9 +66,7 @@ We calculate the minus log KL distance between feature statistics of symthesized
 
 ### Calibrating E statistic and Calibrating C statistic
 
-####TODO
-
-The code will be uploaded soon.
+####TODO: upload calibration code
 
 References
 [1]  P.  Arbelaez,  M.  Maire,  C.  Fowlkes,  and  J.  Malik. Con-tour detection and hierarchical image segmentation.IEEEtransactions  on  pattern  analysis  and  machine  intelligence,33(5):898–916, 2011.

@@ -45,8 +45,8 @@ Breakdown Pb evaluation results for base C statistics:
   - `PbRsts` stores every style transfer images' Pb detection result as a `.mat` file.
   - `round1_eval` stores Pb precision recall curves for evaluated images, see column names in this [function](https://github.com/stringtron/quantative_style/blob/master/bench/benchmarks/evaluation_bdry_image.m) for details.
   - `round1_eval_sum` summarizes Pb evaluation results by style loss weights, `all` folder includes all 300 images.
-      - `eval_bdry.txt`,`eval_bdry_img.txt`, `eval_bdry_thr.txt` stores intermediate results
-      - `Universal_everyImgAUC.mat` stores base C statistics for all evaluated style transfer images. Each row shows weight, contentid, style id, and the base C statistics for one image. This repo reports Pb precision-recall curve AUC as the base C statistics, the max F-1 scores which is the final reported score in our paper, can also be generated using this codebase, see this [function](https://github.com/stringtron/quantative_style/blob/master/bench/benchmarks/collect_eval_bdry.m) for details. 
+      - `eval_bdry.txt`,`eval_bdry_img.txt`, `eval_bdry_thr.txt` stores intermediate results.
+      - `Universal_everyImgAUC.mat` stores base C statistics for all evaluated style transfer images. Each row shows weight, content id, style id, and the base C statistics for one image. Note this repo reports Pb precision-recall curve AUC as the base C statistics, the max F-1 score, which is the final reported score in our paper, can also be generated using this codebase, see this [function](https://github.com/stringtron/quantative_style/blob/master/bench/benchmarks/collect_eval_bdry.m) for details. 
 
 
 

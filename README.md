@@ -46,11 +46,13 @@ Breakdown Pb evaluation results for base C statistics:
   - `round1_eval` stores Pb precision recall curves for evaluated images, see column names in this [function](https://github.com/stringtron/quantative_style/blob/master/bench/benchmarks/evaluation_bdry_image.m) for details.
   - `round1_eval_sum` summarizes Pb evaluation results by style loss weights, `all` folder includes all 300 images.
       - `eval_bdry.txt`,`eval_bdry_img.txt`, `eval_bdry_thr.txt` stores intermediate results
-      - `Universal_everyImgAUC.mat` stores base C statistics for all evaluated style transfer images. Each row shows weight, content and style ids, and the base C statistics for one image. This repo reports Pb precision-recall curve AUC as base C statistics, the max F-1 scores which is the final reported score in our paper, can also be generated using this codebase, see this [function](https://github.com/stringtron/quantative_style/blob/master/bench/benchmarks/collect_eval_bdry.m) for details. 
+      - `Universal_everyImgAUC.mat` stores base C statistics for all evaluated style transfer images. Each row shows weight, contentid, style id, and the base C statistics for one image. This repo reports Pb precision-recall curve AUC as the base C statistics, the max F-1 scores which is the final reported score in our paper, can also be generated using this codebase, see this [function](https://github.com/stringtron/quantative_style/blob/master/bench/benchmarks/collect_eval_bdry.m) for details. 
 
 
 
-### Evaluation of base E statistics
+### Base E statistics
+
+####TODO
 
 ```
 python E_base.ipynb
@@ -60,14 +62,16 @@ python E_base.ipynb
 We calculate the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank of feature channels. Please see our paper for the details. 
 
 
-References
-[1]  P.  Arbelaez,  M.  Maire,  C.  Fowlkes,  and  J.  Malik. Con-tour detection and hierarchical image segmentation.IEEEtransactions  on  pattern  analysis  and  machine  intelligence,33(5):898–916, 2011.
+
 
 ### Calibrating E statistic and Calibrating C statistic
 
-
+####TODO
 
 The code will be uploaded soon.
+
+References
+[1]  P.  Arbelaez,  M.  Maire,  C.  Fowlkes,  and  J.  Malik. Con-tour detection and hierarchical image segmentation.IEEEtransactions  on  pattern  analysis  and  machine  intelligence,33(5):898–916, 2011.
 
 ## Citation
 Please cite our paper for any purpose of usage.

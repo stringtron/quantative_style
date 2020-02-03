@@ -7,7 +7,7 @@ https://arxiv.org/pdf/1910.09447.pdf
 <img src='teasor.png' width=400>
 
 ## Requirements
-- Matlab R2015a
+- Matlab R2015a for Ubuntu 14.04 
 - Python 3
 - PyTorch 0.2.0
 - torchvision

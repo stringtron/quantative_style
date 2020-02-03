@@ -1,4 +1,4 @@
-% streamline script to run following experiments for eccv18 style paper Pb
+% streamline script to run following experiments for wacv2020 style paper Pb
 % eval
 % Experiment steps
 % 1. generate pb map given the weight, content, style sample
@@ -18,19 +18,19 @@ addpath ../grouping/lib
 clear all;close all;clc;
 
 
+% do not modify these parameters
 PERM_GT = false;
 isBoosting = false;
 boosting_iter = 1;
 
-
-
-
 %%%%%%%%%%%%%%%%%%%methods spec%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%% sample files%%%%%%%%%%%%%%%%%%%%%%
-sample_file = './wcs1.txt';
+% files that lists "weight, contentId, styleId" at each row
+% for universal style transfer, model weights from 0 to 1 is linearly mapped
+% to 0 to 2000 to accommendate evaluations on Gatys and Crosslayer. 
+sample_file = './wcs1.txt'; 
 this_trial = 'round1';
-
 
 % %first batch 300 samples from gatys
 % method = 'Gatys';
@@ -43,38 +43,6 @@ this_trial = 'round1';
 %first batch 300 samples from universal style transfer
 method = 'Universal';
 imgFolder = 'Universal_style300';
-
-% %first batch 300 samples from histogram loss
-% method = 'HistLoss';
-% imgFolder = 'Histogram';
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%% sample files%%%%%%%%%%%%%%%%%%%%%%
-% 
-% sample_file = './wcs2.txt';
-% this_trial = 'round2';
-
-
-%second batch 300 samples from gatys
-% method = 'Gatys';
-% imgFolder = 'More_GatysSample';
-
-% %second batch 300 samples from crosslayer
-% method = 'CrossLayer';
-% imgFolder = 'More_OursSample';
-
-
-
-% % calibration experiment, all 300 stylized images are original contents
-% method = 'allContent';
-% imgFolder = 'AllContSampled';
-
-% % calibration experiment 2, all 300 stylized images are original styles
-% method = 'allStyle';
-% imgFolder = 'AllStyleSampled';
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,14 +72,14 @@ end
 mkdir(EvalOutDir);
 mkdir(Eval_stat_outDir);
 
-
+%% open parallel pool if you have parallel computing license
 % open parpool
 % delete(gcp);
 % parpool('local_Copy',8); %6/8 workers
 
 %% get Pb maps
 
-% note all stylized images will be stored in one folder, so as the Pb maps
+% note all stylized images should be stored in one folder, so as the Pb maps
 % it is untill when evaluated, samples from different trial will be stored
 % in indivisual folders.
 
@@ -121,6 +89,7 @@ image_names = getImgnamesBySample(samples); % return an cell array of image file
 mkdir(PbOutDir);
 all_file_dir(1:length(image_names)) = struct('name',[],'date',[],'bytes',[],'isdir',[],'datenum',[]);
 
+% change for to parfor if parallel package is available
 for i =1:numel(image_names)
     
     PbOutFile = fullfile(PbOutDir,[image_names{i}(1:end-4) '.mat']); 

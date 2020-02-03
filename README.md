@@ -13,7 +13,7 @@ https://arxiv.org/pdf/1910.09447.pdf
 - torchvision
 - R (for calibrating base EC statistics)
 
-## Style and content images used in the paper:
+## Style and Content Images
 ### Style Images
 50 style images presented in the paper are collected from previous work and online sources. 
 Download from the [link](https://www.dropbox.com/s/v6mrsdo12s459nm/50styles.zip?dl=0])
@@ -25,7 +25,10 @@ See 50 styles from the following links:
 
 ### Content Images 
 We use 200 test images and their ground truth contour annotations from the [BSDS500 dataset](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html).
-Download all test content images, annotations, and examples of evaluated style transferred images used in the paper from this [link](https://www.dropbox.com/s/nflmpwisbpr1ebw/BSDS500.zip?dl=0).
+Download all test content images, annotations, and examples of evaluated style transferred images used in the paper: 
+
+https://www.dropbox.com/s/nflmpwisbpr1ebw/BSDS500.zip?dl=0
+
 Unzip downloaded file as "./BSDS500" under the home directory of this repo. 
 
 ## Experiment procedure

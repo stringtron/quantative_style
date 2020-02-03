@@ -9,7 +9,7 @@ https://arxiv.org/pdf/1910.09447.pdf
 ## Requirements
 - Matlab R2015a
 - Python 3
-- PyTorch
+- PyTorch 0.2.0
 - torchvision
 - R (for calibrating base EC statistics)
 

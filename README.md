@@ -10,7 +10,7 @@ https://arxiv.org/pdf/1910.09447.pdf
 - Matlab R2015a for Ubuntu 14.04 
 - Python 3
 - PyTorch 0.2.0
-- torchvision
+- torchvision 0.2.0
 - R (for calibrating base EC statistics)
 
 ## Style and Content Images

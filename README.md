@@ -66,7 +66,7 @@ The related files and folders for E_base.ipynb:
 2. the reference images( or content images) for PCA basis are in Reference_dir = `./content/`
 3. the sample(or synthesized) images are in source_dir = `./sample/` and are listed in `sample.txt`
 4. the generate E values of 5 layers of each sample are listed in `EValue[32, 48, 128, 256, 256].txt`
-
+5. the pre-trained VGG model is saved at model_dir = `./Models/` . You can download the model from https://www.dropbox.com/s/xc78chba9ffs82a/vgg_conv.pth?dl=0
 
 
 

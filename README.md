@@ -55,12 +55,14 @@ Breakdown Pb evaluation results for base C statistics:
 
 ### Base E statistics
 
-####TODO: upload base E statistics examples
+Please run the E_base.ipynb step by step.
 
 ```
 python E_base.ipynb
 ```
-
+The related file and folder for E_base.ipynb:
+1. the style images are in style_dir = `./50styles`
+2. the content images for reference images for PCA basis are in Reference_dir = `./content/`
 
 We calculate the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank of feature channels. Please see our paper for the details. 
 

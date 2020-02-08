@@ -55,9 +55,9 @@ Breakdown Pb evaluation results for base C statistics:
 
 ### Base E statistics
 
-We calculate the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank of feature channels. Please see our paper for the details. 
+We calculate the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank of feature maps. See our paper for the details. 
 
-Please run the E_base.ipynb step by step to generate the E statistics of smaple images.
+To generate the E statistics of smaple images, please run the E_base.ipynb step by step 
 ```
 python E_base.ipynb
 ```
@@ -66,7 +66,7 @@ The related files and folders for E_base.ipynb:
 2. the reference images( or content images) for PCA basis are in Reference_dir = `./content/`
 3. the sample(or synthesized) images are in source_dir = `./sample/` and are listed in `sample.txt`
 4. the generate E values of 5 layers of each sample are listed in `EValue[32, 48, 128, 256, 256].txt`
-5. the pre-trained VGG model is saved at model_dir = `./Models/` . You can download the model from https://www.dropbox.com/s/xc78chba9ffs82a/vgg_conv.pth?dl=0
+5. the pre-trained VGG model is saved at model_dir = `./Models/` .  The model can be downloaded from https://www.dropbox.com/s/xc78chba9ffs82a/vgg_conv.pth?dl=0
 
 
 

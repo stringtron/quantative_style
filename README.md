@@ -18,8 +18,10 @@ https://arxiv.org/pdf/1910.09447.pdf
 50 style images presented in the paper are collected from previous work and online sources. 
 Download from the [link](https://www.dropbox.com/s/v6mrsdo12s459nm/50styles.zip?dl=0])
 
-See 50 styles from the following links:
 <img src='50styles_1.pdf' width=400>
+
+See 50 styles from the following links:
+
 [50styles_1.pdf](https://github.com/stringtron/quantative_style/files/4075093/50styles_1.pdf) 
 [50styles_2.pdf](https://github.com/stringtron/quantative_style/files/4075094/50styles_2.pdf)
 

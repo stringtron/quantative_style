@@ -24,7 +24,7 @@ from shutil import copyfile
 
 
 
-#vgg definition that conveniently let's you grab the outputs from any layer
+#vgg definition that conveniently let you grab the outputs from any layer
 class VGG(nn.Module):
     def __init__(self, pool='max'):
         super(VGG, self).__init__()
@@ -83,7 +83,7 @@ class VGG(nn.Module):
         out['p5'] = self.pool5(out['r54'])
         return [out[key] for key in out_keys]
     
-# a function generate corvariant matrix and means with  input feature map
+# a function generate corvariant matrix and means with input feature map tensor
 class Cov_Mean(nn.Module):
     def forward(self, input):
         b,c,h,w = input.size()
@@ -96,25 +96,20 @@ class Cov_Mean(nn.Module):
         return G.squeeze(0).data, mean_.squeeze().data 
 
     
-class Test:
-    def __init__(self):
-        "test"
-        # pre and post processing for images
-        self.img_size = 512 
-        self.prep = 0
-        
-
-    def PCA(self):
-        temp  =self.prep
-        return temp     
     
-    
-class TOOLS:
+# Our class of tools for generate base E statistics   
+class TOOLS:   
     def __init__(self,model_dir,img_size,):
-
-        # pre and post processing for images
+        
+        #set parameters
         self.img_size = img_size
         self.PCA_basis = 0
+        # Layers for style transfer
+        self.style_layers = ['r11','r21','r31','r41', 'r51'] 
+        self.content_layers = ['r42']  
+        # Reduced Dimensions(ranks) for PCA
+        self.Ks = [ 32,48,128,256,256]
+        # pre  processing for images
         self.prep = transforms.Compose([transforms.Scale(img_size),
                                    transforms.ToTensor(),
                                    transforms.Lambda(lambda x: x[torch.LongTensor([2,1,0])]), #turn to BGR
@@ -134,10 +129,11 @@ class TOOLS:
 
         
 
-
+    # project covariance matrix and mean  PCA_basis with reduced ranks (k).
     def PCA_Proj(self,A,P,k):
         return torch.mm(torch.mm(P[0][:,:k].t(),A[0]),P[2][:,:k]), torch.mm( A[1].unsqueeze(0), P[0][:,:k] ) 
     
+    # evaluate the log term in KL divergence formula
     def Det(self,A,B):
         _,S,_ = torch.svd(A)
         _,S1,_ = torch.svd(B)
@@ -153,7 +149,6 @@ class TOOLS:
         references = glob.glob(Reference_dir+"*.jpg")  # generate a list of reference images                    
 
         Total_Covs=[0,0,0,0,0]
-        style_layers = ['r11','r21','r31','r41', 'r51'] 
 
         for sample in references:    
 
@@ -164,15 +159,14 @@ class TOOLS:
             else:
                 img_torch = Variable(img_torch.unsqueeze(0))
                 
-            Covs_Means = [Cov_Mean()(A) for A in self.vgg(img_torch, style_layers[:])] # generate corvariant matrix and means for each layer
+            Covs_Means = [Cov_Mean()(A) for A in self.vgg(img_torch, self.style_layers[:])] # generate corvariant matrix and means for each layer
             Total_Covs= [x+y[0] for x,y in zip(Total_Covs,Covs_Means)] # summation of corvariant matrix of each layer over references
 
         # Take an average over references
-
         AVG_Covs = [x/len(references) for x in Total_Covs]
 
         
-        # make a decomposition of each layer    
+        # make a decomposition (U, S, V) of each layer 
         self.PCA_basis = [torch.svd(data) for data in AVG_Covs]    
 
             
@@ -182,10 +176,10 @@ class TOOLS:
     
 
     def E_Basic_Statistics(self, style_dir, source_dir, source_list, outputfile):
-        # Dimensions
-        Ks = [ 32,48,128,256,256]
-
+        # Reduced Dimensions(ranks) for PCA
+        Ks = self.Ks # [ 32,48,128,256,256]
         
+        # setup for input and outpu files
         input_list = open(source_list, 'r') 
         output_list= open('%s%s'%(Ks,outputfile), 'w')
         columns = ["style", "content","weight","E1","E2","E3","E4","E5","\n"]
@@ -195,14 +189,14 @@ class TOOLS:
 
         for line in input_list.readlines()[:]:
             
-            ## with specific file list format 
+            ## with specific file list format (depending on filenames of source_list)
             filename  = line[:-1] 
             sp =line[:].split('_')
             style =int(sp[0][5:]) 
             content = int(sp[1][7:])
             print(style,content, filename)
 
-
+            # pre-processing of images with typorch
             img_dirs = [style_dir,  source_dir]
             img_names = ['styles - %s.jpg'%style, filename]
             imgs = [Image.open(img_dirs[i] + name) for i,name in enumerate(img_names)]
@@ -214,27 +208,28 @@ class TOOLS:
                 imgs_torch = [Variable(img.unsqueeze(0)) for img in imgs_torch]
             style_image,  syn_image = imgs_torch
 
+            
+            # generate convariant matrix and mean of layers of style image(target) and synthemsized image
+            style_targets = [Cov_Mean()(A) for A in self.vgg(style_image, self.style_layers[:])]
+            syn_results = [Cov_Mean()(A) for A in self.vgg(syn_image, self.style_layers[:])]
 
-            style_layers = ['r11','r21','r31','r41', 'r51'] 
-            content_layers = ['r42']  
-
-            style_targets = [Cov_Mean()(A) for A in self.vgg(style_image, style_layers[:])]
-            syn_results = [Cov_Mean()(A) for A in self.vgg(syn_image, style_layers[:])]
-
-
-            PCA_targets = [self.PCA_Proj(data,P ,k) for data,P,k in zip(style_targets,self.PCA_basis,Ks)]
-            PCA_syn_results = [self.PCA_Proj(data,P ,k) for data,P,k in zip(syn_results,self.PCA_basis,Ks)]     
+            # pre-process of terms for the evaluation KL divergence:
+            # generate new pca covariance matrix and mean for style image and synthesized image with given PCA_basis and reduced ranks.
+            PCA_targets = [self.PCA_Proj(data,P ,k) for data,P,k in zip(style_targets,self.PCA_basis,Ks)] 
+            PCA_syn_results = [self.PCA_Proj(data,P ,k) for data,P,k in zip(syn_results,self.PCA_basis,Ks)] 
+            # evaluate the log term in KL divergence formula
             LogDet_AoverB = [ self.Det(syn[0],tar[0]) for syn,tar,k in zip(PCA_syn_results,PCA_targets,Ks)]
 
             KLs = []
-            
+            # A list of terms needed for KL divergence
             KL_parts  = [ (torch.trace(torch.mm( y[0].inverse(), x[0])), torch.mm( torch.mm((y[1] -x[1]),  y[0].inverse()), (y[1]-x[1]).t() ).squeeze()[0] ,-k, logD) for x,y,logD, k in zip(PCA_syn_results,PCA_targets,LogDet_AoverB,Ks)]
 
-            KLs.append(np.sum(x) for x in KL_parts )  # np.sum(x) gives the 2 KL divergence
-            KL_array = np.array(KLs)
+            KLs.append(np.sum(x) for x in KL_parts )  # np.sum(x) gives the 2*KL divergence
+            KL_array = np.array(KLs) # convert to numpy array
             Es = [ str(-np.log(x)+ np.log(2)) for x in KLs[0]] # E value is -log(KL)
-            new = sp[:3]+Es +["\n"]  
 
+            # write the reuslts to output file
+            new = sp[:3]+Es +["\n"]  
             name = '\t'.join(new) 
             output_list.write(name)
 

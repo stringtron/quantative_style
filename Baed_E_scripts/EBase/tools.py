@@ -83,6 +83,7 @@ class VGG(nn.Module):
         out['p5'] = self.pool5(out['r54'])
         return [out[key] for key in out_keys]
     
+    
 # a function generate corvariant matrix and means with input feature map tensor
 class Cov_Mean(nn.Module):
     def forward(self, input):
@@ -129,7 +130,7 @@ class TOOLS:
 
         
 
-    # project covariance matrix and mean  PCA_basis with reduced ranks (k).
+    # project covariance matrix and mean (A) to PCA_basis (P) with reduced rank (k).
     def PCA_Proj(self,A,P,k):
         return torch.mm(torch.mm(P[0][:,:k].t(),A[0]),P[2][:,:k]), torch.mm( A[1].unsqueeze(0), P[0][:,:k] ) 
     
@@ -143,12 +144,13 @@ class TOOLS:
             u +=a
         return u
     
+    # given folder of reference images, generate a basis from svd decomposition of (averaged) covariance matrix of each layer 
     def PCA_Basis_Generater(self,Reference_dir):
         
         references=[]
         references = glob.glob(Reference_dir+"*.jpg")  # generate a list of reference images                    
-
-        Total_Covs=[0,0,0,0,0]
+                    
+        Total_Covs=[0,0,0,0,0] # initialize a list of covariant matrices 5 layers 
 
         for sample in references:    
 
@@ -174,10 +176,11 @@ class TOOLS:
     
     
     
-
+    # generate Base E statistics of each sample image (source_dir, source_list) according to style images(style_dir) 
+    # The formula is based on Multivariate normal distributions of https://en.wikipedia.org/wiki/Kullback–Leibler_divergence
     def E_Basic_Statistics(self, style_dir, source_dir, source_list, outputfile):
         # Reduced Dimensions(ranks) for PCA
-        Ks = self.Ks # [ 32,48,128,256,256]
+        Ks = self.Ks # [ 32,48,128,256,256]  
         
         # setup for input and outpu files
         input_list = open(source_list, 'r') 
@@ -189,7 +192,7 @@ class TOOLS:
 
         for line in input_list.readlines()[:]:
             
-            ## with specific file list format (depending on filenames of source_list)
+            ## with specific image file name on list (depending on filenames of source_list)
             filename  = line[:-1] 
             sp =line[:].split('_')
             style =int(sp[0][5:]) 
@@ -224,9 +227,8 @@ class TOOLS:
             # A list of terms needed for KL divergence
             KL_parts  = [ (torch.trace(torch.mm( y[0].inverse(), x[0])), torch.mm( torch.mm((y[1] -x[1]),  y[0].inverse()), (y[1]-x[1]).t() ).squeeze()[0] ,-k, logD) for x,y,logD, k in zip(PCA_syn_results,PCA_targets,LogDet_AoverB,Ks)]
 
-            KLs.append(np.sum(x) for x in KL_parts )  # np.sum(x) gives the 2*KL divergence
-            KL_array = np.array(KLs) # convert to numpy array
-            Es = [ str(-np.log(x)+ np.log(2)) for x in KLs[0]] # E value is -log(KL)
+            KLs.append(np.sum(x) for x in KL_parts )  # np.sum(x) gives the 2*KL divergence of each layer
+            Es = [ str(-np.log(x)+ np.log(2)) for x in KLs[0]] # E value of each layer is -log(KL)
 
             # write the reuslts to output file
             new = sp[:3]+Es +["\n"]  

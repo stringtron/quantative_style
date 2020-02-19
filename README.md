@@ -59,7 +59,7 @@ Breakdown Pb evaluation results for base C statistics:
 ### Base E statistics
 
 We calculate the minus log KL distance between feature statistics of symthesized image and style image. For the evaluation of KL distance, We also use the PCA to reduce the rank of feature maps. See our paper for the details. 
-
+# The KL formula is based on Multivariate normal distributions of https://en.wikipedia.org/wiki/Kullback–Leibler_divergence
 To generate the E statistics of smaple images, please run the E_base.ipynb step by step 
 ```
 python E_base.ipynb

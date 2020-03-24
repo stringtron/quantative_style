@@ -77,11 +77,11 @@ The related files and folders for E_base.ipynb:
 
 ### Calibrating E statistic and Calibrating C statistic
 
-## In section 4.1 of our paper, the admissible models for calibrating E statistic and calibrating C statistic are:
+#### In section 4.1 of our paper, the admissible models for calibrating E statistic and calibrating C statistic are:
 
-## E: 0.7468*E1+0.2557*E2+2.3768*E3
+#### E: 0.7468*E1+0.2557*E2+2.3768*E3
 
-## C: 12.1835*C+0.2979 *E1
+#### C: 12.1835*C+0.2979 *E1
 #### TODO: upload calibration code
 
 

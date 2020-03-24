@@ -79,11 +79,12 @@ The related files and folders for E_base.ipynb:
 
 ####TODO: upload calibration code
 
-#The best model in our paper is:
+##In section 4.1 of our paper, the admissible models for calibrating E statistic and calibrating C statistic are:
 
 E: 0.7468*E1+0.2557*E2+2.3768*E3
 
 C: 12.1835*C+0.2979 *E1
+
 
 References
 [1]  P.  Arbelaez,  M.  Maire,  C.  Fowlkes,  and  J.  Malik. Con-tour detection and hierarchical image segmentation.IEEEtransactions  on  pattern  analysis  and  machine  intelligence,33(5):898–916, 2011.
